@@ -10,4 +10,8 @@ Attack vectors apply the usage of external DTDs, stylesheets, schemas, etc.
 
 <h2> Application Setup</h2>
 <h3>Requirements</h3>
-*Python
+  Python3
+
+<h3>Installation using Docker</h3>
+Clone the repository
+```git clone https://github.com/gokul-ramesh/xxe-fileUpload.git```
