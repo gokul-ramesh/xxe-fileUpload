@@ -10,7 +10,8 @@ Attack vectors apply the usage of external DTDs, stylesheets, schemas, etc.
 
 ## Application Setup
 ### Requirements
-* Python3
+* python3
+* python3-pip
 ### Installation
 * Clone and move into the repository
 ```sh
@@ -32,6 +33,10 @@ Run the docker image
 docker run -p 8000:8000 xxe-fileupload:latest
 ```
 #### Without Docker
+* Verify pip requirements
+```
+pip install -r requirements.txt
+```
 * Populate the DB
 ```python
 python manage.py makemigratations
@@ -44,3 +49,12 @@ python manage.py runserver
 
 
 * App is available at port 8000 by default
+```
+http://localhost:8000/upload
+```
+
+## Exploit
+* The exploit is designed to take advantage of the insecure parsing scheme (package 'lxml' with external entity and network search enabled) used in the application.
+* Navigate to the `/upload` page of the application
+* Select the file "xxe-exploit.xml" and click "Upload"
+* The response lands on page `\display\<id>`, which displays the contents of `\etc\passwd` file
